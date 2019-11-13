@@ -1,4 +1,4 @@
-#! /usr/env/python
+#!/usr/bin/env python3
 
 # based on
 # https://pythonprogramming.net/sql-database-python-part-1-inserting-database/

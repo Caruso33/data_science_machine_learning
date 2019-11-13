@@ -1,0 +1,42 @@
+--
+-- CHAR(5) - fixed length 0 - 255
+-- faster than VARCHAR
+--
+-- NUMBERS
+--
+-- DECIMAL(5,2) - 999.99
+-- max number 5, digits after point
+-- calculation is exact
+--
+-- FLOAT - 7 digits precise
+-- DOUBLE - 15 digits precise
+-- less space than DECIMAL, but
+-- calculation is approximated
+--
+-- DATE / TIME
+--
+-- DATE - YYYY-MM-DD
+--
+-- TIME - HH:MM:SS
+--
+-- DATETIME - YYYY-MM-DD HH:MM:SS
+--
+-- CURDATE() - Current Date
+-- CURTIME() - Current Time
+-- NOW() - Current DATETIME
+--
+-- formatting
+-- DAY(some DATE) -> day
+-- DAYNAME(date)
+-- DAYOFYEAR(date)
+--
+-- DATEFORMAT(datetime, '%W%M%Y') -> SundayOctober2009
+-- specifiers
+--
+-- maths
+-- DATEDIFF(date, anotherdate) -> day difference
+-- DATE_ADD(date, INTERVAL 1 MONTH)
+--
+-- timestamps
+-- range 1970 - 2038!
+-- changed_at TIMESTAMP DEFAULT NOW() ON UPDATE CURRENT_TIMESTAMP

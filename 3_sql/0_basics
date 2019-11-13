@@ -1,0 +1,75 @@
+# https://tomcam.github.io/postgres/#using-psql
+
+#
+## SETUP
+#
+# to get access to mysql command
+PATH=/usr/local/mysql/bin:$PATH
+
+# connect
+mysql -u root -p
+
+# check access privileges
+show databases
+
+# if password error
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'password'
+
+#
+## BASICS
+#
+
+# database
+SHOW DATABASES
+ 
+CREATE DATABASE test
+DROP DATABASE test
+
+USE databasename;
+
+SELECT database(); # show selected database
+
+SHOW WARNINGS;
+
+# datatypes
+int >whole number
+varchar >string
+
+# tables
+CREATE TABLE name
+    (
+        column_name data_type NOT NULL (opt.) DEFAULT 'defaultValue',
+        column_key_name data_type AUTO_INCREMENT,
+        PRIMARY KEY (column_key_name)
+    );
+
+SHOW TABLES;
+SHOW COLUMNS FROM table;
+DESC tablename;
+
+DROP TABLE tablename;
+
+#
+## CRUD
+#
+
+# create
+INSERT INTO tablename(col1, col2)
+VALUES ('col1value', 'col2value')
+/
+VALUES ('col1val', 'col2val'),('col1val', 'col2val'),('col1val', 'col2val')
+
+# read
+SELECT * FROM table;
+SELECT col1 AS ID, col2 AS CAT_NAME FROM table;
+
+WHERE col1='val' # specificals, case-insensitive
+WHERE col1=number # specificals
+
+# update
+UPDATE tablename SET col='value'
+WHERE col='value'
+
+#delete 
+DELETE FROM tablename 
+WHERE col='value'
