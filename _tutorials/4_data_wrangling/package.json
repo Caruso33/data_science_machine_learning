@@ -1,0 +1,20 @@
+{
+  "name": "4_data_wrangling",
+  "version": "1.0.0",
+  "description": "",
+  "main": "mongodb-primer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^3.3.4",
+    "mongoose": "^5.7.11",
+    "validator": "^12.0.0"
+  },
+  "devDependencies": {
+    "faker": "^4.1.0"
+  }
+}
