@@ -20,6 +20,6 @@ Andrew Ng's Stanford [Machine Learning Class](https://www.coursera.org/learn/mac
 
 Udacity's [Data Scientist Nanodegree Resources](https://www.udacity.com/course/data-scientist-nanodegree--nd025)
 
-## [Zero to Deep Learning](https://github.com/Dataweekends/zero_to_deep_learning_video)
+## [Zero to Deep Learning](https://github.com/Caruso33/data_science_machine_learning/tree/master/zero_to_deep_learning)
 
-Implements machine-learning concepts in the high-level language [Keras](https://keras.io)
+[Machine learning course](https://github.com/Dataweekends/zero_to_deep_learning_video) implementing concepts in the high-level language [Keras](https://keras.io).
