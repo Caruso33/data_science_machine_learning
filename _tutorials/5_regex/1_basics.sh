@@ -63,7 +63,6 @@ grep 'x[#:\^\\]y' "${data}14.txt"
 
 grep '^foo.*' "${data}15.txt"
 grep '.*bar$' "${data}16.txt"
-# print "16"
 
 #***************************
 # ^char$ - char only string in line
