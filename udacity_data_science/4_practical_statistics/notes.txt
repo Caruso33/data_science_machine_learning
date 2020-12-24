@@ -1,0 +1,38 @@
+
+## Descriptive Statistics
+
+Describes the data, e.g.:
+
+- Measure of center: mean, median, mode
+- Measure of spread: min, max, percentile, median, range (max - min), iqr (interquartile range) (q3 - q1), variance / std deviation
+- Measure of shape: skewness / symmetry , 
+- Outliers
+
+
+## Inferential Statistics
+
+
+Takes data to make predictions, uses terminology:
+
+- Population, entire amount
+- Sample, fraction of population
+- Statistics, data / insight of Sample
+- Parameter, the data / insight of the population (wanted)
+
+Drawing conclusions based on statistics towards population >> inference. 
+
+
+## Law of Large Numbers
+
+The larger the sample size, the closer the statistics gets to the parameter.
+
+
+## Central Limit Theorem
+
+With a large enough sample size the sampling distribution of the mean will be normally distributed. (That means if you take many samples, you will reach the true mean more likely.)
+
+## Bootstrapping
+
+Instead of relying on CLT which has gaps (how big should the sample size be? Does it work for my statistic?), with bootstrapping we're simulating the sampling distribution.
+
+Means sampling with replacement
