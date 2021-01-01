@@ -20,7 +20,7 @@ Andrew Ng's Stanford [Machine Learning Class](https://www.coursera.org/learn/mac
 
 Udacity's [Data Scientist Nanodegree Resources](https://www.udacity.com/course/data-scientist-nanodegree--nd025)
 
-## [machine_learning_fundamentals](https://github.com/Caruso33/data_science_fundamentals/tree/master/udacity_machine_learning)
+## [machine learning fundamentals](https://github.com/Caruso33/data_science_fundamentals/tree/master/udacity_machine_learning)
 
 Udacity's [Intro to Machine Learning](https://classroom.udacity.com/courses/ud120)
 
