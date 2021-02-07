@@ -2,6 +2,7 @@
 # from utils import *
 from utils import rows, cols, boxes, history
 from utils import extract_units, extract_peers, cross, grid2values, display
+import itertools
 
 row_units = [cross(r, cols) for r in rows]
 # row_units[0] = ['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9']
@@ -17,10 +18,9 @@ unitlist = row_units + column_units + square_units
 one_diagonal = [x[0]+x[1] for x in zip(rows, cols)]
 other_diagonal = [rows[i] + cols[-i-1] for i in range(len(cols))]
 
+diagonal_units = [one_diagonal, other_diagonal]
 
-# diagonal_units = [one_diagonal, other_diagonal]
-
-# unitlist = unitlist + diagonal_units
+unitlist = unitlist + diagonal_units
 
 # Must be called after all units (including diagonals) are added to the unitlist
 units = extract_units(unitlist, boxes)
@@ -86,8 +86,20 @@ def naked_twins(values):
     and because it is simpler (since the reduce_puzzle function already calls this
     strategy repeatedly).
     """
-    # TODO: Implement this function!
-    raise NotImplementedError
+    for unit in unitlist:
+        pairs = [box for box in unit if len(values[box]) == 2]
+
+        posssible_twins = [list(pair)
+                           for pair in itertools.combinations(pairs, 2)]
+        for pair in posssible_twins:
+            twin_box_1, twin_box_2 = pair
+
+            if values[twin_box_1] == values[twin_box_2]:
+                for box in unit:
+                    if box != twin_box_1 and box != twin_box_2:
+                        for digit in values[twin_box_1]:
+                            values[box] = values[box].replace(digit, '')
+    return values
 
 
 def eliminate(values):
@@ -205,6 +217,7 @@ def reduce_puzzle(values):
 
         values = eliminate(values)
         values = only_choice(values)
+        values = naked_twins(values)
 
         solved_values_after = len(
             [box for box in values.keys() if len(values[box]) == 1])
@@ -297,25 +310,25 @@ def solve(grid):
 
 
 if __name__ == "__main__":
-    # diag_sudoku_grid = '2.............62....1....7...6..8...3...9...7...6..4...4....8....52.............3'
-    # display(grid2values(diag_sudoku_grid))
-    # result = solve(diag_sudoku_grid)
-    # display(result)
+    diag_sudoku_grid = '2.............62....1....7...6..8...3...9...7...6..4...4....8....52.............3'
+    display(grid2values(diag_sudoku_grid))
+    result = solve(diag_sudoku_grid)
 
     # solvable
     # test_grid = '..3.2.6..9..3.5..1..18.64....81.29..7.......8..67.82....26.95..8..2.3..9..5.1.3..'
     # run_own_implementation(test_grid)
 
     # not solvable without search
-    test_grid2 = '4.....8.5.3..........7......2.....6.....8.4......1.......6.3.7.5..2.....1.4......'
+    # test_grid2 = '4.....8.5.3..........7......2.....6.....8.4......1.......6.3.7.5..2.....1.4......'
     # run_own_implementation(test_grid2)
-    display(grid2values(test_grid2))
-    result = solve(test_grid2)
+    # display(grid2values(test_grid2))
+    # result = solve(test_grid2)
+
     display(result)
 
     try:
         import PySudoku
-        PySudoku.play(grid2values(test_grid2), result, history)
+        PySudoku.play(grid2values(diag_sudoku_grid), result, history)
 
     except SystemExit:
         pass
