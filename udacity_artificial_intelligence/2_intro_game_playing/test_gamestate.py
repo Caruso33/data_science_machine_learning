@@ -5,6 +5,12 @@ from gamestate import *
 
 
 def test_game_class():
+    # game class
+    print("Creating empty game board...")
+    emptyState = GameState()
+    print("Everything looks good!")
+
+    # game class functionality
     print("Creating empty game board...")
     g = GameState()
 
