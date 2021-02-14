@@ -64,20 +64,20 @@ class GameState:
             (-1, -1),
         ]
 
+        player_location = self._player_locations[self._parity]
+
+        if not player_location:
+            legal_moves = [
+                (x, y)
+                for x in range(num_row)
+                for y in range(num_col)
+                if self._board[x][y] == 0
+            ]
+
+            return legal_moves  # all board positions
+
         def move_if_legal(current_direction, board_location=()):
             nonlocal legal_moves
-
-            player_location = self._player_locations[self._parity]
-
-            if not player_location:
-                legal_moves = [
-                    (x, y)
-                    for x in range(num_row)
-                    for y in range(num_col)
-                    if self._board[x][y] == 0
-                ]
-
-                return  # all board positions
 
             loc_zip = (
                 zip(board_location, current_direction)
@@ -88,22 +88,19 @@ class GameState:
             new_loc = tuple(map(sum, loc_zip))
             new_row_loc, new_col_loc = new_loc
 
-            # Outside of board
-            if new_row_loc < 0 or new_row_loc >= num_row:
-                return
+            if (
+                # Inside of board
+                0 <= new_row_loc < num_row
+                and 0 <= new_col_loc < num_col
+                # Place occupied
+                and self._board[new_row_loc][new_col_loc] == 0
+            ):
 
-            if new_col_loc < 0 or new_col_loc >= num_col:
-                return
+                # is legal move
+                legal_moves.append(new_loc)
 
-            # Place occupied
-            if self._board[new_row_loc][new_col_loc] != 0:
-                return
-
-            # is legal move
-            legal_moves.append(new_loc)
-
-            # check ongoing direction
-            return move_if_legal(current_direction, new_loc)
+                # check ongoing direction
+                return move_if_legal(current_direction, new_loc)
 
         for move_direction in move_directions:
             move_if_legal(move_direction)
