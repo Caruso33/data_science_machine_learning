@@ -1,7 +1,7 @@
 from minimax_helpers import *
 
 
-def minimax_decision(gameState):
+def minimax_decision(gameState, depth=float("inf")):
     """Return the move along a branch of the game tree that
     has the best possible value.  A move is a pair of coordinates
     in (column, row) order corresponding to a legal move for
@@ -18,7 +18,7 @@ def minimax_decision(gameState):
     for move in legal_moves:
         future_game = gameState.forecast_move(move)
 
-        min_val = min_value(future_game)
+        min_val = min_value(future_game, depth - 1)
         if min_val > maximum:
             maximum = min_val
             best_move = move
