@@ -26,5 +26,6 @@ def minimax_decision(gameState, depth=float("inf")):
     return best_move
 
     return max(
-        gameState.get_legal_moves(), key=lambda m: min_value(gameState.forecast_move(m))
+        gameState.get_legal_moves(),
+        key=lambda m: min_value(gameState.forecast_move(m), depth - 1),
     )
