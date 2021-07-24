@@ -22,7 +22,11 @@ Udacity's [Data Scientist Nanodegree Resources](https://www.udacity.com/course/d
 
 ## [machine learning fundamentals](https://github.com/Caruso33/data_science_fundamentals/tree/master/udacity_machine_learning)
 
-Udacity's [Intro to Machine Learning](https://classroom.udacity.com/courses/ud120)
+Udacity's [Intro to Machine Learning](https://www.udacity.com/course/intro-to-machine-learning--ud120)
+
+## [deep reinforcement learning](https://github.com/Caruso33/data_science_fundamentals/tree/master/udacity_deep_reinforcement_learning)
+
+Udacity's [Deep Reinforcement Learning](https://www.udacity.com/course/deep-reinforcement-learning-nanodegree--nd893)
 
 ## [Zero to Deep Learning](https://github.com/Caruso33/data_science_machine_learning/tree/master/zero_to_deep_learning)
 
