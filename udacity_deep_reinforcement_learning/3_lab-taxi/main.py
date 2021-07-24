@@ -59,6 +59,31 @@ def custom_grid_search(hyperparameters, run_interaction, on_results):
         on_results(results)
 
 
+def get_file_methods(filename, remove_pickle_if_present):
+    terminate_program = False
+
+    if remove_pickle_if_present:
+        if os.path.exists(filename):
+            os.remove(filename)
+
+            terminate_program = True
+
+    if os.path.exists(filename):
+        with open(filename, "rb") as outputfile:
+            results = pickle.load(outputfile)
+
+            best_avg_reward = max(results, key=lambda x: x["best_avg_reward"])
+            print("best_avg_reward", best_avg_reward)
+
+            terminate_program = True
+
+    def write_results(results):
+        with open(filename, "wb") as outputfile:
+            pickle.dump(results, outputfile)
+
+    return terminate_program, write_results
+
+
 def run_grid_search():
     # default kwargs
     # eps=1.0, alpha=0.5, gamma=0.5, decay=0.6, min_eps=0.
@@ -67,24 +92,16 @@ def run_grid_search():
 
     remove_pickle_if_present = False
 
-    if remove_pickle_if_present:
-        if os.path.exists(filename):
-            os.remove(filename)
-
-    if os.path.exists(filename):
-        with open(filename, "rb") as outputfile:
-            results = pickle.load(outputfile)
-
-            best_avg_reward = max(results, key=lambda x: x["best_avg_reward"])
-
-            print("best_avg_reward", best_avg_reward)
-
-            return
+    terminate_program, write_results = get_file_methods(
+        filename, remove_pickle_if_present
+    )
+    if terminate_program:
+        return
 
     hyperparameters = {
         "eps": [1.0, 0.8, 0.6],
-        "alpha": [0, 0.3, 0.5, 0.7, 0.9, 0.99],
-        "gamma": [0.5, 0.7, 0.9, 0.99],
+        "alpha": [0.3, 0.5, 0.7, 0.9, 0.99],
+        "gamma": [0.3, 0.5, 0.7, 0.9, 0.99],
         "decay": [0.3, 0.5, 0.7, 0.9, 0.99],
         "min_eps": [0.0, 0.05, 0.1, 0.3],
     }
@@ -99,8 +116,7 @@ def run_grid_search():
         return avg_rewards, best_avg_reward
 
     def on_results(results):
-        with open(filename, "wb") as outputfile:
-            pickle.dump(results, outputfile)
+        write_results(results)
 
     custom_grid_search(hyperparameters, run_interaction, on_results)
 
