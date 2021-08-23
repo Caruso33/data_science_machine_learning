@@ -13,7 +13,7 @@ Thus, the goal of the agent is to maintain its position at the target location f
 
 The task is episodic, and in order to solve the environment, the agent must get an average score of `+30` over `100` consecutive episodes.
 
-Please note, that the files `dqn_agent.py` as well as `model.py` are needed.
+Please note, that the files `ddpg_agent.py` as well as `model.py` are needed.
 The first version of the task is implemented where a single agent is interacting with the environment.
 
 ### State and Action Spaces
