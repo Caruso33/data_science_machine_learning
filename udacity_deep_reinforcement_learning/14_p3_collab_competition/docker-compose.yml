@@ -1,0 +1,13 @@
+version: '3.4'
+
+services:
+  deepreinforcementlearning:
+    image: deepreinforcementlearning
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+
+    volumes:
+      - ./main.py:/app/main.py
+      - ./ddpg_agent.py:/app/ddpg_agent.py
+      - ./model.py:/app/model.py
