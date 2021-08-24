@@ -74,7 +74,7 @@ The [Tennis.ipynb](Tennis.ipynb) uses the headless environment and the [MADDPG A
 
 Notable external dependencies is the [PyTorch libary](https://pytorch.org/).
 
-![Convergence Plot](plot.PNG)
+![Convergence Plot](plot.jpg)
 
 The convergence plot shows that the agent achieves a target max score of 0.5 consistently at around 1400 episodes.
 
@@ -115,3 +115,9 @@ A [ReLU](<https://en.wikipedia.org/wiki/Rectifier_(neural_networks)>) activation
 And a Batch normalization function between the first and second layer.
 
 Those architectures are deployed with a local and target network for both, actor and critic - please refer to [maddpg.py](maddpg.py) and [model.py](model.py) for the specific implemenation.
+
+### Future work
+
+- Run a grid search to optimize hyperparameters
+- Try the MADDPG implementation on the soccer task
+- Implement different shared communications between the actors and critics of the multi-agents as suggested by the [MADDPG paper](https://arxiv.org/abs/1706.02275v4)
