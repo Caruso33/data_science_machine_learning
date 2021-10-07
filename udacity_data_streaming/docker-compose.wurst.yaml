@@ -1,0 +1,45 @@
+version: "3.8"
+services:
+  #########
+  # Kafka #
+  #########
+
+  zookeeper:
+    container_name: zookeeper
+    image: wurstmeister/zookeeper
+
+    networks:
+      - kafka_network
+
+    ports:
+      - "2181:2181"
+
+  kafka:
+    container_name: kafka
+    image: wurstmeister/kafka
+
+    networks:
+      - kafka_network
+
+    ports:
+      - "9092:9092"
+
+    environment:
+      KAFKA_LISTENERS: DOCKER_NET://0.0.0.0:9093,HOST_NET://0.0.0.0:9092
+      KAFKA_ADVERTISED_LISTENERS: DOCKER_NET://kafka:9093,HOST_NET://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: DOCKER_NET:PLAINTEXT,HOST_NET:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: DOCKER_NET
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      # Create Kafka topics "NAME:PARTITION:REPLICAS,..."
+      KAFKA_CREATE_TOPICS: "${KAFKA_TOPIC_I}:1:1,${KAFKA_TOPIC_II}:1:1"
+
+    depends_on:
+      - zookeeper
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+networks:
+  kafka_network:
+    name: kafka
+    driver: bridge
